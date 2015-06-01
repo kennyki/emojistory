@@ -1,0 +1,27 @@
+{
+  "name": "emojistory",
+  "version": "0.0.0",
+  "authors": [
+    "Kenny"
+  ],
+  "description": "Story in emoji",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".meteor/local/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-css-only": "~3.3.4",
+    "angular-moment": "~0.10.1"
+  },
+  "ignoredDependencies": [
+    "angular"
+  ]
+}

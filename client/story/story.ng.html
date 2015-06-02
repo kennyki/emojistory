@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-8 col-sm-9">
+
+    <alert type="warning" ng-show="!story">Woah no such story :-/</alert>
+
+    <div class="panel panel-default panel-sm">
+      <div class="panel-heading">
+        <strong>{{story.title}}</strong>
+      </div>
+      <div class="panel-body">
+        {{story.body}}
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4 col-sm-3">
+
+    <div class="well well-sm">
+      <div class="row">
+        <p class="col-md-6 col-sm-12 col-xs-6">
+          {{story.created | amCalendar}}
+        </p>
+        <p class="col-md-6 col-sm-12 col-xs-6">
+          {{story.creator}}
+        </p>
+        <p class="col-md-6 col-sm-12 col-xs-6">
+          <a href class="btn btn-clear btn-xs">
+            <span class="glyphicon glyphicon-thumbs-up"></span> {{story.likes}}
+          </a>
+        </p>
+        <p class="col-md-6 col-sm-12 col-xs-6">
+          <span class="label label-info">{{story.category}}</span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

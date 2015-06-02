@@ -7,12 +7,12 @@ angular.module('emojistory.home', [])
     templateUrl: 'client/home/home.ng.html'
     controller: 'HomeController'
 
-.controller 'HomeController', ($scope, $meteor) ->
+.controller 'HomeController', ($scope) ->
   # not allowed to update
-  $scope.categories = $meteor.collection(Categories, false).subscribe 'categories'
-  $scope.stories = $meteor.collection Stories, false
+  $scope.categories = $scope.$meteorCollection(Categories, false).subscribe 'categories'
+  $scope.stories = $scope.$meteorCollection Stories, false
 
   # so that it knows when something changes
-  $meteor.autorun $scope, ->
-    $meteor.subscribe('stories').then ->
+  $scope.$meteorAutorun ->
+    $scope.$meteorSubscribe('stories').then ->
       # update necessary stuff

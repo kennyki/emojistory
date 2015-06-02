@@ -4,6 +4,7 @@ angular.module('emojistory', [
   'ui.bootstrap'
   'angularMoment'
   'emojistory.home'
+  'emojistory.story'
 ])
 
 .config ($urlRouterProvider, $locationProvider) ->

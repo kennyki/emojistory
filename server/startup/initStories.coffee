@@ -10,8 +10,7 @@ Meteor.startup ->
         It all started with a story :smile:
       """
       category: 'should be category id'
-      upvotes: 10
-      downvotes: 0
+      likes: 10
       created: (new Date()).toJSON()
       creator: 'should be user id'
     }

@@ -1,32 +1,31 @@
-<alert type="warning" ng-show="stories.length === 0">Woah there's no story yet!</alert>
-
-<div class="row" ng-show="stories.length !== 0">
+<div class="row">
   <div class="col-md-8 col-sm-9">
 
-    <div class="panel panel-default panel-sm" ng-repeat="story in stories">
-      <div class="panel-body">
-        <strong>{{story.title}}</strong>
-        <div class="row">
-          <div class="col-xs-3">
-            <a href class="btn btn-clear btn-xs">
-              <span class="glyphicon glyphicon-thumbs-up"></span> {{story.upvotes}}
-            </a>
-            <a href class="btn btn-clear btn-xs">
-              <span class="glyphicon glyphicon-thumbs-down"></span> {{story.downvotes}}
-            </a>
-          </div>
-          <div class="col-xs-3">
-            <span class="label label-info">{{story.category}}</span>
-          </div>
-          <div class="col-xs-3">
-            {{story.created | amCalendar}}
-          </div>
-          <div class="col-xs-3">
-            {{story.creator}}
+    <alert type="warning" ng-show="stories.length === 0">Woah there's no story yet!</alert>
+
+    <a class="anchor-clear" ui-sref="story({id: story._id})" ng-repeat="story in stories">
+      <div class="panel panel-default panel-sm">
+        <div class="panel-body">
+          <strong class="text-primary">{{story.title}}</strong>
+          <div class="row">
+            <div class="col-xs-2">
+              <span class="btn btn-clear btn-xs">
+                <span class="glyphicon glyphicon-thumbs-up"></span> {{story.likes}}
+              </span>
+            </div>
+            <div class="col-xs-3">
+              <span class="label label-info">{{story.category}}</span>
+            </div>
+            <div class="col-xs-3 text-right">
+              {{story.created | amCalendar}}
+            </div>
+            <div class="col-xs-4 text-right">
+              {{story.creator}}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
 
   </div>
   <div class="col-md-4 col-sm-3">

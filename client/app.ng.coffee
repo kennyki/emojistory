@@ -13,7 +13,11 @@ angular.module('emojistory', [
   # rock 'n roll
   $locationProvider.html5Mode true
 
-.run ($rootScope) ->
+.run ($rootScope, $state) ->
   $rootScope.$on '$stateChangeError', (event, next, prev, error) ->
     # TODO: proper error pages routing: 404, 401, 500, etc
     alert error
+
+  # default to home
+  accountsUIBootstrap3.logoutCallback = ->
+    $state.go 'home'

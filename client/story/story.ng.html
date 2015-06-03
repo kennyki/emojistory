@@ -23,10 +23,13 @@
         <p class="col-md-6 col-sm-12 col-xs-6">
           {{story.creator}}
         </p>
-        <p class="col-md-6 col-sm-12 col-xs-6">
-          <a href class="btn btn-clear btn-xs">
-            <span class="glyphicon glyphicon-star"></span> {{story.stars}}
-          </a>
+        <p class="col-md-6 col-sm-12 col-xs-6 btn-group">
+          <button class="btn btn-default btn-xs" ng-click="star()" ng-disabled="!canStar">
+            <span class="glyphicon" ng-class="{'glyphicon-star-empty': !isStarred, 'glyphicon-star': isStarred}"></span>
+            {{ ' ' + (isStarred ? 'Unstar' : 'Star') }}
+          </button>
+          <!-- TODO: stargazers -->
+          <a href class="btn btn-default btn-xs" disabled>{{story.stars}}</a>
         </p>
         <p class="col-md-6 col-sm-12 col-xs-6">
           <span class="label label-info">{{story.category}}</span>

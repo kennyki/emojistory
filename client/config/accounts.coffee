@@ -18,3 +18,12 @@ Accounts.ui.config
         return valid
     }
   ]
+
+###
+# Defaults
+###
+accountsUIBootstrap3.setCustomSignupOptions = ->
+  return {
+    starred: []
+    stories: []
+  }

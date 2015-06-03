@@ -5,10 +5,10 @@
 Stories.allow(
   insert: (userId, story) ->
     # must be logged in and create for own self
-    return userId and story.owner is userId
+    return userId and story.creator is userId
   update: (userId, story, fields, modifier) ->
-    return userId is story.owner
-  remove: (userId, party) ->
-    return userId is story.owner
+    return userId is story.creator
+  remove: (userId, story) ->
+    return userId is story.creator
 )
 ###

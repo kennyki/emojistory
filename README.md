@@ -1,5 +1,5 @@
 # Emoji Story
-Best told in emotions
+> Emotion tells best
 
 ## Development
 ### Initialize

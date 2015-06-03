@@ -5,10 +5,29 @@
 </head>
 
 <body ng-app="emojistory">
-  <header>
-    <a href="/" class="anchor-clear">
-      <h1 class="text-center text-bright">Emoji Story <small>Best told in emotions</small></h1>
-    </a>
+
+  <header class="navbar navbar-invert navbar-fixed-top">
+    <div class="container">
+      <!-- brand -->
+      <a href="/" class="anchor-clear navbar-header">
+        <h2 class="text-bright">Emoji Story <small>Emotion tells best</small></h2>
+      </a>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- sign in -->
+        <span class="btn btn-default btn-sm login-controls">
+          <!-- NOTE: for some reasons it's prefixed with an underscore -->
+          <meteor-include src="_loginButtons"></meteor-include>
+        </span>
+        <!-- create -->
+        <li ng-if="$root.currentUser">
+          <a class="btn btn-primary btn-sm" ui-sref="create">
+            <span class="glyphicon glyphicon-plus"></span> Create
+          </a>
+        </li>
+      </ul>
+    </div>
   </header>
+
   <section ui-view class="container"></section>
+
 </body>

@@ -1,4 +1,6 @@
-angular.module('emojistory.story', [])
+angular.module('emojistory.story', [
+  'emojistory.story.create'
+])
 
 .config ($stateProvider) ->
   # is where the heart is
@@ -7,7 +9,7 @@ angular.module('emojistory.story', [])
     templateUrl: 'client/story/story.ng.html'
     controller: 'StoryController'
 
-.controller 'StoryController', ($scope, $stateParams, $meteor, $q) ->
+.controller 'StoryController', ($scope, $stateParams, $meteor, $q, $state) ->
   # not allowed to update
   $scope.story = $scope.$meteorObject Stories, $stateParams.id, false
   $scope.isStarred = false
@@ -23,6 +25,7 @@ angular.module('emojistory.story', [])
     unless rawStory._id
       # TODO: 404 page
       alert 'no such story'
+      $state.go 'home'
 
     if story and currentUser
       $scope.isStarred = currentUser.starred and currentUser.starred.indexOf(story._id) isnt -1

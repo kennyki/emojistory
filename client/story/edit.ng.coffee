@@ -1,4 +1,4 @@
-angular.module('emojistory.story.create', [])
+angular.module('emojistory.story.edit', [])
 
 .config ($stateProvider) ->
   # is where the heart is

@@ -1,5 +1,6 @@
 angular.module('emojistory.story', [
   'emojistory.story.create'
+  'emojistory.story.edit'
 ])
 
 .config ($stateProvider) ->
@@ -9,7 +10,9 @@ angular.module('emojistory.story', [
     templateUrl: 'client/story/story.ng.html'
     controller: 'StoryController'
 
-.controller 'StoryController', ($scope, $stateParams, $meteor,  $state) ->
+.controller 'StoryController', ($scope, $stateParams, $meteor,  $state, $modal) ->
+  # this is for removal use
+  stories = $scope.$meteorCollection Stories, false
   # not allowed to update
   $scope.story = $scope.$meteorObject Stories, $stateParams.id, false
   $scope.isStarred = false
@@ -58,3 +61,28 @@ angular.module('emojistory.story', [
     $meteor.call(methodName, $scope.story._id).then angular.noop (reason) ->
       # TODO: display properly
       alert reason
+
+  $scope.remove = ->
+    if $scope.story.creator isnt $scope.currentUser._id
+      # TODO: proper alert
+      return alert 'You are not the creator of this story!'
+
+    $modal.open
+      animation: false
+      templateUrl: 'client/story/remove.ng.html'
+      controller: 'RemoveStoryController'
+      size: 'sm'
+    .result.then (confirm) ->
+      return unless confirm
+      stories.remove($scope.story).then ->
+        $state.go 'home'
+      , (error) ->
+        # TODO: alert properly
+        alert error
+
+.controller 'RemoveStoryController', ($scope, $modalInstance) ->
+  $scope.confirm = ->
+    $modalInstance.close true
+
+  $scope.cancel = ->
+    $modalInstance.dismiss 'cancel'

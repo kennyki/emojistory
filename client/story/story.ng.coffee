@@ -14,6 +14,7 @@ angular.module('emojistory.story', [
   $scope.story = $scope.$meteorObject Stories, $stateParams.id, false
   $scope.isStarred = false
   $scope.canStar = false
+  $scope.isCreator = false
 
   updateStarPower = ->
     # $scope inherits from $rootScope anyway
@@ -30,6 +31,7 @@ angular.module('emojistory.story', [
     if story and currentUser
       $scope.isStarred = currentUser.starred and currentUser.starred.indexOf(story._id) isnt -1
       $scope.canStar = true
+      $scope.isCreator = currentUser._id is story.creator
 
   $scope.$meteorAutorun ->
     $q.all([

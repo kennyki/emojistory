@@ -15,25 +15,40 @@
   </div>
   <div class="col-md-4 col-sm-3">
 
-    <div class="well well-sm">
-      <div class="row">
-        <p class="col-md-6 col-sm-12 col-xs-6">
-          {{story.created | amCalendar}}
-        </p>
-        <p class="col-md-6 col-sm-12 col-xs-6">
-          {{story.__creator.profile.name}}
-        </p>
-        <p class="col-md-6 col-sm-12 col-xs-6 btn-group">
-          <button class="btn btn-default btn-xs" ng-click="star()" ng-disabled="!canStar">
-            <span class="glyphicon" ng-class="{'glyphicon-star-empty': !isStarred, 'glyphicon-star': isStarred}"></span>
-            {{ ' ' + (isStarred ? 'Unstar' : 'Star') }}
+    <div class="panel panel-default panel-sm">
+      <div class="panel-heading story-info">
+        <div class="row">
+          <p class="col-md-6 col-sm-12 col-xs-6">
+            {{story.created | amCalendar}}
+          </p>
+          <p class="col-md-6 col-sm-12 col-xs-6">
+            {{story.__creator.profile.name}}
+          </p>
+          <p class="col-md-6 col-sm-12 col-xs-6 btn-group">
+            <button class="btn btn-default btn-xs" ng-click="star()" ng-disabled="!canStar">
+              <span class="glyphicon" ng-class="{'glyphicon-star-empty': !isStarred, 'glyphicon-star': isStarred}"></span>
+              {{ ' ' + (isStarred ? 'Unstar' : 'Star') }}
+            </button>
+            <!-- TODO: stargazers -->
+            <a href class="btn btn-default btn-xs" disabled>{{story.stars}}</a>
+          </p>
+          <p class="col-md-6 col-sm-12 col-xs-6">
+            <a href class="btn btn-info btn-xs btn-block">{{story.__category.title}}</a>
+          </p>
+        </div>
+      </div>
+      <!-- only creator can edit/remove -->
+      <div class="panel-body row" ng-if="isCreator">
+        <div class="col-xs-6">
+          <a href class="btn btn-default btn-xs btn-block" ui-sref="edit({id: story._id})">
+            <span class="glyphicon glyphicon-pencil"></span> Edit
+          </a>
+        </div>
+        <div class="col-xs-6">
+          <button class="btn btn-danger btn-xs btn-block" ng-click="remove()">
+            <span class="glyphicon glyphicon-trash"></span> Remove
           </button>
-          <!-- TODO: stargazers -->
-          <a href class="btn btn-default btn-xs" disabled>{{story.stars}}</a>
-        </p>
-        <p class="col-md-6 col-sm-12 col-xs-6">
-          <span class="label label-info">{{story.__category.title}}</span>
-        </p>
+        </div>
       </div>
     </div>
 

@@ -4,7 +4,7 @@ angular.module('emojistory.story.create', [])
   # is where the heart is
   $stateProvider.state 'create',
     url: '/create'
-    templateUrl: 'client/story/create.ng.html'
+    templateUrl: 'client/story/editor.ng.html'
     controller: 'CreateStoryController'
 
 .controller 'CreateStoryController', ($scope, $meteor, $q, $state) ->
@@ -32,3 +32,5 @@ angular.module('emojistory.story.create', [])
         # display properly
         alert error
     )
+
+  $scope.cancel = -> $state.go 'home'

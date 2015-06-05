@@ -43,6 +43,8 @@ StorySchema = new SimpleSchema
         return {
           $setOnInsert: new Date()
         }
+      else
+        return this.unset()
   modified:
     type: Date
     optional: true
@@ -59,5 +61,7 @@ StorySchema = new SimpleSchema
         return {
           $setOnInsert: @userId
         }
+      else
+        return this.unset()
 
 Stories.attachSchema StorySchema

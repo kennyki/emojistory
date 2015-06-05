@@ -9,7 +9,7 @@ angular.module('emojistory.story', [
     templateUrl: 'client/story/story.ng.html'
     controller: 'StoryController'
 
-.controller 'StoryController', ($scope, $stateParams, $meteor, $q, $state) ->
+.controller 'StoryController', ($scope, $stateParams, $meteor,  $state) ->
   # not allowed to update
   $scope.story = $scope.$meteorObject Stories, $stateParams.id, false
   $scope.isStarred = false
@@ -34,11 +34,13 @@ angular.module('emojistory.story', [
       $scope.isCreator = currentUser._id is story.creator
 
   $scope.$meteorAutorun ->
-    $q.all([
-      $scope.$meteorSubscribe 'stories',
-        _id: $stateParams.id
+    # NOTE: need to subscribe 1 by 1 to ensure all is ready
+    # $q.all doesn't seem to be able to guarantee
+    $scope.$meteorSubscribe 'stories',
+      _id: $stateParams.id
+    .then ->
       $scope.$meteorSubscribe 'userData'
-    ]).then ->
+    .then ->
       story = $scope.story
       # NOTE: we're using publichComposite
       # so the real data of users and categories should be available now

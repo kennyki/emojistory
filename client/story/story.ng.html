@@ -38,18 +38,20 @@
         </div>
       </div>
       <!-- only creator can edit/remove -->
-      <div class="panel-body row" ng-if="isCreator">
-        <div class="col-xs-6">
-          <a href class="btn btn-default btn-xs btn-block" ui-sref="edit({id: story._id})">
-            <span class="glyphicon glyphicon-pencil"></span> Edit
-          </a>
+      <div class="panel-body" ng-if="isCreator">
+        <div class="row">
+          <div class="col-xs-6">
+            <a href class="btn btn-default btn-xs btn-block" ui-sref="edit({id: story._id})">
+              <span class="glyphicon glyphicon-pencil"></span> Edit
+            </a>
+          </div>
+          <div class="col-xs-6">
+            <button class="btn btn-danger btn-xs btn-block" ng-click="remove()">
+              <span class="glyphicon glyphicon-trash"></span> Remove
+            </button>
+          </div>
         </div>
-        <div class="col-xs-6">
-          <button class="btn btn-danger btn-xs btn-block" ng-click="remove()">
-            <span class="glyphicon glyphicon-trash"></span> Remove
-          </button>
         </div>
-      </div>
     </div>
 
   </div>

@@ -33,9 +33,17 @@ angular.module('emojistory.story', [
 
   $scope.$meteorAutorun ->
     $q.all([
-      $scope.$meteorSubscribe('stories')
-      $scope.$meteorSubscribe('userdata')
+      $scope.$meteorSubscribe 'stories',
+        _id: $stateParams.id
+      $scope.$meteorSubscribe 'userData'
     ]).then ->
+      story = $scope.story
+      # NOTE: we're using publichComposite
+      # so the real data of users and categories should be available now
+      # use __ to indicate display-only properties
+      story.__creator = Users.findOne story.creator
+      story.__category = Categories.findOne story.category
+
       # process only when the story is properly loaded
       # and also when the stars change
       $scope.$watch 'story.stars', updateStarPower

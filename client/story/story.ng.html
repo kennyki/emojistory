@@ -21,7 +21,7 @@
           {{story.created | amCalendar}}
         </p>
         <p class="col-md-6 col-sm-12 col-xs-6">
-          {{story.creator}}
+          {{story.__creator.profile.name}}
         </p>
         <p class="col-md-6 col-sm-12 col-xs-6 btn-group">
           <button class="btn btn-default btn-xs" ng-click="star()" ng-disabled="!canStar">
@@ -32,7 +32,7 @@
           <a href class="btn btn-default btn-xs" disabled>{{story.stars}}</a>
         </p>
         <p class="col-md-6 col-sm-12 col-xs-6">
-          <span class="label label-info">{{story.category}}</span>
+          <span class="label label-info">{{story.__category.title}}</span>
         </p>
       </div>
     </div>

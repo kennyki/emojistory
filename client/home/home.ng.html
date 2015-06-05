@@ -14,13 +14,13 @@
               </span>
             </div>
             <div class="col-xs-3">
-              <span class="label label-info">{{story.category}}</span>
+              <span class="label label-info">{{story.__category.title}}</span>
             </div>
             <div class="col-xs-3 text-right">
               {{story.created | amCalendar}}
             </div>
             <div class="col-xs-4 text-right">
-              {{story.creator}}
+              {{story.__creator.profile.name}}
             </div>
           </div>
         </div>

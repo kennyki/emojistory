@@ -1,8 +1,8 @@
 # adapted from http://stackoverflow.com/a/19392085/940030
-Meteor.publish 'userdata', ->
-  return unless @userId
+Meteor.publish 'userData', (userId) ->
+  return unless userId or @userId
   # we need more fields than the default
-  return Users.find @userId,
+  return Users.find userId or @userId,
     fields:
       emails: 1
       profile: 1
